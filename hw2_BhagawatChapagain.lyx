@@ -1,0 +1,475 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children no
+\language american
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\series bold
+Bhagawat Chapagain – I pledge my honor that I have abided by the Stevens Honor System.
+ 
+\end_layout
+
+\begin_layout Standard
+(1) For a language 
+\begin_inset Formula $J_{k}=\{w\in\{0,1,2\}^{*}|$
+\end_inset
+
+ the 
+\begin_inset Formula $k^{th}$
+\end_inset
+
+ symbol of 
+\begin_inset Formula $w$
+\end_inset
+
+ is 1.},
+ the respective machine for each 
+\begin_inset Formula $k$
+\end_inset
+
+ can be found by observing the first few cases.
+ Namely,
+ if we observe cases of 
+\begin_inset Formula $J$
+\end_inset
+
+ for small values of 
+\begin_inset Formula $k$
+\end_inset
+
+,
+ we can spot a pattern.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+k=1:
+\]
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename q1a.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+k=2:
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename q1b.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+k=3:
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename q1c.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For each case of 
+\begin_inset Formula $k$
+\end_inset
+
+,
+ we see that the machine for 
+\begin_inset Formula $J_{k-1}$
+\end_inset
+
+is present in the the machine diagram.
+ We know that this will always be the case because we cannot use 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ to remain at the the same position in the input string in in NFAs.
+ Due to this,
+ we know that we need to travel 
+\begin_inset Formula $k$
+\end_inset
+
+ states,
+ however,
+ we must also include two (2) states for acceptance and rejection.
+ Therefore there must be minimum of 
+\begin_inset Formula $k+2$
+\end_inset
+
+ states in 
+\begin_inset Formula $J_{k}$
+\end_inset
+
+'s language.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\hline$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(2)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 2a.jpg
+	scale 10
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename 2b.jpg
+	scale 5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\hline$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(3) As proven in class,
+ if 
+\begin_inset Formula $A,B$
+\end_inset
+
+ are regular then 
+\begin_inset Formula $A\circ B$
+\end_inset
+
+ must be regular.
+ If we have 
+\begin_inset Formula $A\star B=\{w\in\Sigma^{*}|w=a_{1}b_{1}\dots a_{k}b_{k}$
+\end_inset
+
+ for some 
+\begin_inset Formula $k\ge1$
+\end_inset
+
+ and symbols 
+\begin_inset Formula $a_{1},\dots,a_{k},b_{k},\dots,b_{k}\in\Sigma$
+\end_inset
+
+ such that 
+\begin_inset Formula $a_{1}\dots a_{k}\in A$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{1},\dots,b_{k}\in B$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $A\star B$
+\end_inset
+
+ is found by merging of all pairs of strings in 
+\begin_inset Formula $A,B$
+\end_inset
+
+ that have the same length,
+ each 
+\begin_inset Formula $a_{k}$
+\end_inset
+
+ must be associated with an equally sized 
+\begin_inset Formula $b_{k}$
+\end_inset
+
+ but since 
+\begin_inset Formula $\Sigma^{*}:=\{a_{1},\dots,a_{k},b_{k},\dots,b_{k}\}^{*}$
+\end_inset
+
+,
+ it is every combination of 
+\begin_inset Formula $\{a,b\}$
+\end_inset
+
+ generated infinitely.
+ Therefore,
+ there are equally as many 
+\begin_inset Formula $a_{k},b_{k}$
+\end_inset
+
+ of the same size than those that are not.
+ Therefore 
+\begin_inset Formula $|A\circ B|$
+\end_inset
+
+ = 
+\begin_inset Formula $|A\star B|$
+\end_inset
+
+ and 
+\begin_inset Formula $A\star B\subseteq A\circ B$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $A\star B$
+\end_inset
+
+ belongs to the same finite equivalence class as 
+\begin_inset Formula $A\circ B$
+\end_inset
+
+,
+ it must be regular.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\hline$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(4) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+((00)^{*}1)^{*}=\{\{00,0000,000000,\dots\}\circ1\}^{*}=\{001,00001,0000001,\dots\}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+((000)^{*}1)^{*}=\{\{000,000000,000000000,\dots\}\circ1\}^{*}=\{0001,0000001,0000000001,\dots\}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\text{\{001,00001,0000001,\dots\}^{*}\cap\{0001,0000001,0000000001,\dots\}^{*}=(00)^{*}\cap(000)^{*}\circ1^{*}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The intersection between 
+\begin_inset Formula $(00)^{*}$
+\end_inset
+
+and 
+\begin_inset Formula $(000)^{*}$
+\end_inset
+
+would just be a set of zeroes concatenated by the smallest common factor between two and three zeroes.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+(000000)^{*}\circ1^{*}=\{000000,000000000000,000000000000000000,\dots\}\circ\{1,11,111,\dots\}=\{0000001\}^{*}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\hline$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(5) Setting up the State-Elimination method and we get this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename CamScanner 10-04-2024 20.00_1.jpg
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Elim X:
+ 
+\begin_inset Formula $\{(q_{0},Y):(a\cup b)^{*}a,(Z,T):(a\cup b),(Z,q_{f}):\epsilon,(T,q_{f}):\epsilon\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Elim Y:
+ 
+\begin_inset Formula $\{(q_{0},Z):(a\cup b)^{*}a(a\cup b),(Z,T):(a\cup b),(Z,q_{f}):\epsilon,(T,q_{f}):\epsilon\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Elim Z:
+ 
+\begin_inset Formula $\{(q_{0},T):(a\cup b)^{*}a(a\cup b)(a\cup b),(q_{0},q_{f}):(a\cup b)^{*}a(a\cup b)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Elim T:
+ 
+\begin_inset Formula $\{(q_{0},q_{f}):(a\cup b)^{*}a(a\cup b)\cup(a\cup b)\cup(a\cup b)^{*}a(a\cup b)\}$
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
