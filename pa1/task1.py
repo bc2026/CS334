@@ -13,22 +13,22 @@ class NDFA:
         return M
 
     def read_from_stdin(self):
-        states = input("States: ")
+        states = input()
         states = eval(states)
 
-        print("Alphabet: ")
+        # print("Alphabet: ")
         sigma = sys.stdin.readline()
         sigma = eval(sigma)
 
-        print("Transitions: ")
+        #print("Transitions: ")
         dlt = sys.stdin.readline()
         dlt = eval(dlt)
 
-        print("Initial State: ")
+        #print("Initial State: ")
         qs = sys.stdin.readline()
         qs = eval(qs)
 
-        print("Final States: ")
+        #print("Final States: ")
         F = sys.stdin.readline()
         F = eval(F)
 
@@ -50,12 +50,49 @@ class NDFA:
             raise IndexError(error_msg)
 
     def follow_choices(self, choice_sequence: list, input_string: str) -> list:
-        curr_choice = choice_sequence[0]
-        curr_string_input = input_string[0]
-        curr_state = 
+        curr_state = self.qs
+        states = [curr_state]
         
-        possible_states = self.dlt[(current_state, curr_string_input)]
-        next_state = state_to_go_to(possible_states, curr_choice)
+        for i in range(len(input_string)):
+            curr_choice = choice_sequence[i]
+            curr_string_input = input_string[i]
+            possible_states = self.dlt[(curr_state, curr_string_input)]
+            next_state = self.state_to_go_to(possible_states, curr_choice)
+            states.append(next_state)                                                                                                                                                                         
+            curr_state = next_state
+
+        return ([states] + [True]) if states[-1] in self.F else ([states] + [False])
+
+# Define the elements for the NDFA
+states = [0, 1, 2, 3]
+sigma = ['0', '1']
+dlt = {
+    (0, '0'): [0, 1],
+    (0, '1'): [0],
+    (1, '0'): [2],
+    (1, '1'): [2],
+    (2, '0'): [3],
+    (2, '1'): [],
+    (3, '0'): [3],
+    (3, '1'): [3]
+}
+qs = 0
+F = [3]
+
+# Create the NDFA instance
+ndfa = NDFA(states, sigma, dlt, qs, F)
+
+# Define the choice sequence and input string
+choice_sequence = [0, 0, 0, 0, 1, 0]
+input_string = '101101'
+
+# Test the follow_choices method
+result = ndfa.follow_choices(choice_sequence, input_string)
+
+# Print the result
+print(result)
+
+
 
 
 
