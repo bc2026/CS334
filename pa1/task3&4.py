@@ -27,33 +27,37 @@ class NDFA:
         return result
 
     def read_from_stdin(self):
+        # states
         states = input()
         states = eval(states)
 
         # print("Alphabet: ")
-        sigma = input()  # Changed from sys.stdin.readline() to input()
+        sigma = sys.stdin.readline()
         sigma = eval(sigma)
 
         # print("Transitions: ")
-        dlt = input()  # Changed from sys.stdin.readline() to input()
+        dlt = sys.stdin.readline()  # Changed from sys.stdin.readline() to input()
         dlt = eval(dlt)
 
         # print("Initial State: ")
-        qs = input()  # Changed from sys.stdin.readline() to input()
+        qs = sys.stdin.readline()  # Changed from sys.stdin.readline() to input()
         qs = eval(qs)
 
         # print("Final States: ")
-        F = input()  # Changed from sys.stdin.readline() to input()
+        F = sys.stdin.readline()  # Changed from sys.stdin.readline() to input()
         F = eval(F)
 
         self.states, self.sigma, self.dlt, self.qs, self.F = states, sigma, dlt, qs, F
 
     def read_from_stdin1a(self):
         self.read_from_stdin()
-        print("Input String:")
-        input_string = input()  # Changed from sys.stdin.readline() to input()
+        # Input string
+        input_string = sys.stdin.readline() 
         input_string = eval(input_string)
-        return input_string
+        
+        x2 = sys.stdin.readline()
+        x2 = eval(x2)
+        return [input_string, x2]
 
     def generate_all_processing_paths(self, input_string: str):
         possible_options = NDFA.generate_binary_combinations(len(input_string))  # Fixed to input_string
@@ -137,38 +141,27 @@ class NDFA:
         return (bin_string, tuple(bin_positions))
     
     def dfa_delta(self, subset: tuple, symbol: str) -> tuple:
+        
         dfa_list = []
         for item in subset:
             if(item!=None):
                 dfa_list += (self.dlt[(item, symbol)])
         
         return tuple(list(set(dfa_list)))
+    
+    
 
 
-        
-            
-# Define the elements for the NDFA
-states = [0, 1, 2, 3]
-sigma = ['0', '1']
-dlt = {(0, '0'): [1, 3], (0, '1'): [1], (1, '0'): [2], (1, '1'): [1, 2], (2, '0'): [3], (2, '1'): [0], (3, '0'): [], (3, '1'): [0]}
-qs = 0
-F = [3]
+ndfa = NDFA([], [], {}, "", [])
 
-# Create the NDFA instance
-ndfa = NDFA(states, sigma, dlt, qs, F)
+# Read the input once
+data = ndfa.read_from_stdin1a()
 
-# Define the choice sequence and input string
-choice_sequence = [0, 0, 0, 0, 1, 0]
-input_string = '101101'
+# Use the data properly
+
+x1 = data[0]
+x2 = data[1]
 
 
-# print(ndfa.dfa_delta((0,2), '0'))
-# print(ndfa.dfa_delta((0,1,2), '1'))
-# print(ndfa.dfa_delta((1,3), '0'))
-# print(ndfa.dfa_delta((), '1'))
-# print(ndfa.dfa_delta((0,1,2,3), '0'))
-# Test the follow_choices method
-#result = ndfa.follow_choices(choice_sequence, input_string)
-
-# Print the result
-#ndfa.generate_all_processing_paths(input_string)
+print(ndfa.dfa_delta(x1,x2))
+#WORKING
