@@ -57,13 +57,19 @@ class NDFA:
 
     def generate_all_processing_paths(self, input_string: str):
         possible_options = NDFA.generate_binary_combinations(len(input_string))  # Fixed to input_string
-        input_string_size = len(input_string)
 
+        results = {}  # To store processing paths and accept/reject status
+        
         for comb in possible_options:
             try:
-                print("({0}, {1})->{2}".format(comb, self.follow_choices(comb, input_string)[0], self.follow_choices(comb, input_string)[1] ))  # Fixed
+                states, accepted = self.follow_choices(comb, input_string)  # Get states and acceptance status
+                results[(tuple(comb), tuple(states))] = accepted  # Store result in dictionary
             except IndexError:
-                break
+                continue  # Skip invalid paths
+
+        # Print the results in the required format
+        for key, value in results.items():
+            print(f"{key} --> {value}")
 
     @staticmethod
     def state_to_go_to(option_list: list, index: int):
@@ -73,7 +79,7 @@ class NDFA:
             error_msg = "No state to go to with index " + str(index)
             raise IndexError(error_msg)
             
-    def follow_choices(self, choice_sequence: list, input_string: str) -> list:
+    def follow_choices(self, choice_sequence: list, input_string: str) -> tuple:
         curr_state = self.qs
         states = [curr_state]
         
@@ -85,12 +91,13 @@ class NDFA:
             try:
                 next_state = self.state_to_go_to(possible_states, curr_choice)
             except IndexError: 
-                break
+                break  # If no valid state, break the loop
 
             states.append(next_state)
             curr_state = next_state
 
-        return ([states] + [True]) if states[-1] in self.F else ([states] + [False])
+        # Return states and True if final state is accepting, False otherwise
+        return (states, True) if states[-1] in self.F else (states, False)
 
 # Define the elements for the NDFA
 states = [0, 1, 2, 3]
@@ -119,4 +126,4 @@ input_string = '101101'
 result = ndfa.follow_choices(choice_sequence, input_string)
 
 # Print the result
-print(ndfa.generate_all_processing_paths(input_string))
+ndfa.generate_all_processing_paths(input_string)
