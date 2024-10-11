@@ -148,24 +148,18 @@ class NDFA:
                 dfa_list += (self.dlt[(item, symbol)])
         
         return tuple(list(set(dfa_list)))
-
-    def convert_to_dfa(self):
-
     
-    
+    def convert_to_dfa(self) -> dict:
+                
+        numstates = 2 ** len(ndfa.states)
 
+        subset_dict = {}
+        for state in range(numstates):
+            x0 = self.dfa_delta(decode_set(state, numstates)[1], '0')
+            x1 = self.dfa_delta(decode_set(state, numstates)[1], '1')
 
-ndfa = NDFA([], [], {}, "", [])
+            subset_dict[(state, '0')] = encode_set(x0, numstates)[1]
+            subset_dict[(state, '1')] = encode_set(x1, numstates)[1]
+            
+        return subset_dict
 
-# Read the input once
-data = ndfa.read_from_stdin1a()
-
-# Use the data properly
-
-# x1 = data[0]
-# x2 = data[1]
-
-
-for item in ndfa.dlt:
-    print(ndfa.encode_set(ndfa.dlt[item], len(ndfa.states)))
-# print(ndfa.convert_to_dfa())
