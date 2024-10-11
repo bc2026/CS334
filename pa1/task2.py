@@ -256,5 +256,3 @@ result = ndfa.follow_choices(choice_sequence, input_string)
 
 # Print the result
 ndfa.generate_all_processing_paths(input_string)
-
->>>>>>> 11f9850b774729d751c4fe5d57764ca9f16e18ab
