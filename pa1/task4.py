@@ -155,11 +155,22 @@ class NDFA:
 
         subset_dict = {}
         for state in range(numstates):
-            x0 = self.dfa_delta(decode_set(state, numstates)[1], '0')
-            x1 = self.dfa_delta(decode_set(state, numstates)[1], '1')
+            x0 = self.dfa_delta(self.decode_set(state, numstates)[1], '0')
+            x1 = self.dfa_delta(self.decode_set(state, numstates)[1], '1')
 
-            subset_dict[(state, '0')] = encode_set(x0, numstates)[1]
-            subset_dict[(state, '1')] = encode_set(x1, numstates)[1]
+            subset_dict[(state, '0')] = self.encode_set(x0, numstates)[1]
+            subset_dict[(state, '1')] = self.encode_set(x1, numstates)[1]
             
         return subset_dict
 
+
+    
+
+ndfa = NDFA([], [], {}, "", [])
+
+ndfa.read_from_stdin()
+
+d = ndfa.convert_to_dfa()
+
+for k,v in d.items():
+    print("{0}: {1}".format(k,v))
