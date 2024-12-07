@@ -1,0 +1,544 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children no
+\language american
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Bhagawat Chapagain - I pledge my honor that I have abided by the Stevens Honor System.
+ 
+\end_layout
+
+\begin_layout Standard
+(1) 
+\begin_inset Graphics
+	filename C:/Users/bc/Downloads/tree.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S\Rightarrow^{1}AB\Rightarrow^{3}aBSb\Rightarrow^{4}aSb\epsilon b\Rightarrow^{1}aABb\epsilon b\Rightarrow^{3,4}\Rightarrow aaBSbb\epsilon b\Rightarrow^{4}aaSbSbb\epsilon b\Rightarrow^{2}aa\epsilon b\epsilon bb\epsilon b=aabbbb
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(2) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S\rightarrow aaB\rightarrow aaAa$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+case 1:
+ 
+\begin_inset Formula $aaAa\rightarrow aa\epsilon a\rightarrow aaa$
+\end_inset
+
+,
+ however this does not equal the requested string.
+ 
+\end_layout
+
+\begin_layout Standard
+case 2:
+ 
+\begin_inset Formula $aaAa\rightarrow aabBba$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The only possibility for the 
+\begin_inset Formula $B$
+\end_inset
+
+ variable is 
+\begin_inset Formula $Aa.$
+\end_inset
+
+ So we get 
+\begin_inset Formula $aabAaba$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+case 1:
+ 
+\begin_inset Formula $aabAaba\rightarrow aab\epsilon aba\rightarrow aababa$
+\end_inset
+
+,
+ however this does not equal the requested string.
+ 
+\end_layout
+
+\begin_layout Standard
+case 2:
+ 
+\begin_inset Formula $aabAaba\rightarrow aabbBbaba\rightarrow aabbAababa$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here,
+ considering the epsilon case for 
+\begin_inset Formula $A$
+\end_inset
+
+,
+ we find 
+\begin_inset Formula $aabbababa$
+\end_inset
+
+ which does not equal the requested string.
+ The other case is two 
+\begin_inset Formula $b$
+\end_inset
+
+'s that sandwich an 
+\begin_inset Formula $Aa$
+\end_inset
+
+ which means the derived string can only become a series of 
+\begin_inset Formula $a$
+\end_inset
+
+'s with left and right adjacent 
+\begin_inset Formula $b$
+\end_inset
+
+'s.
+ Considering the original string has two consecutive 
+\begin_inset Formula $b$
+\end_inset
+
+'s before the penultimate and penultimate character.
+ The grammar 
+\begin_inset Formula $G$
+\end_inset
+
+ cannot derive string 
+\begin_inset Formula $aabbabba$
+\end_inset
+
+ since the deriving S derives 
+\begin_inset Formula $aaB$
+\end_inset
+
+ and the 
+\begin_inset Formula $B$
+\end_inset
+
+ variable guarantees at least one a in between any two 
+\begin_inset Formula $b$
+\end_inset
+
+'s if there exist any in the string.
+ 
+\end_layout
+
+\begin_layout Standard
+(3) The maximum length possible is 
+\begin_inset Formula $|s|\leq k^{h}$
+\end_inset
+
+ since each of the symbols generates 
+\begin_inset Formula $k$
+\end_inset
+
+ more symbols for each level on the tree.
+ Solving for 
+\begin_inset Formula $h\leq\log_{k}(|s|)$
+\end_inset
+
+.
+ At each step of length 
+\begin_inset Formula $l$
+\end_inset
+
+ increases by 
+\begin_inset Formula $k-1$
+\end_inset
+
+ repeatedly.
+ Starting at length 1,
+ we get the following expression after 
+\begin_inset Formula $h$
+\end_inset
+
+ steps.
+ 
+\begin_inset Formula $|s|\leq1+h(k-1)$
+\end_inset
+
+.
+ Solving for 
+\begin_inset Formula $h$
+\end_inset
+
+,
+ we find that it is 
+\begin_inset Formula $h\ge\frac{|s|-1}{k-1}$
+\end_inset
+
+ and also 
+\begin_inset Formula $\frac{|s|-1}{k-1}\le h\leq\log_{k}(|s|)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(4)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X\rightarrow aXa|aYa$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y\rightarrow bY|\epsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Remove epsilons and introduce dummy 
+\begin_inset Formula $S$
+\end_inset
+
+ variable.
+ This will add the string 
+\begin_inset Formula $aa$
+\end_inset
+
+ to to 
+\begin_inset Formula $X$
+\end_inset
+
+ since 
+\begin_inset Formula $Y$
+\end_inset
+
+ is replaced with 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+.
+ We'll eliminate 
+\begin_inset Formula $X$
+\end_inset
+
+ and replace with its production.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S\rightarrow X$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X\rightarrow aXa|aYa$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y\rightarrow bY|\epsilon$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After the last step,
+ we just need to introduce new variables that satisfy the restrictions of Chomsky normal form.
+ Those being some variable 
+\begin_inset Formula $A\rightarrow BC|a$
+\end_inset
+
+ where 
+\begin_inset Formula $B,C$
+\end_inset
+
+ are both variables or a terminal 
+\begin_inset Formula $a$
+\end_inset
+
+ but never a combination of the two.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S\rightarrow AXA|AYA|AA$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X\rightarrow AXA|AYA|AA$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y\rightarrow BY$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A\rightarrow a$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $B\rightarrow b$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(5) 
+\end_layout
+
+\begin_layout Standard
+The below machine has two choices from after setting up the bottom of the stack with the character 
+\begin_inset Formula $\$$
+\end_inset
+
+ and adding 
+\begin_inset Formula $a$
+\end_inset
+
+ characters to the stack,
+ it could see a 
+\begin_inset Formula $b$
+\end_inset
+
+ with an 
+\begin_inset Formula $a$
+\end_inset
+
+ at the top of the stack immediately then finish for the string 
+\begin_inset Formula $ab$
+\end_inset
+
+ or see 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ at and attach 
+\begin_inset Formula $m$
+\end_inset
+
+ number of 
+\begin_inset Formula $b$
+\end_inset
+
+ characters where 
+\begin_inset Formula $n\leq m\leq3n$
+\end_inset
+
+ and 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number of 
+\begin_inset Formula $a$
+\end_inset
+
+ characters.
+ Observe that the number of 
+\begin_inset Formula $b$
+\end_inset
+
+'s can be any of the following 
+\begin_inset Formula $n,n+1,\dots2n,2n+1,\dots3n$
+\end_inset
+
+.
+ This is why I use 
+\begin_inset Formula $q_{2}$
+\end_inset
+
+and 
+\begin_inset Formula $q_{3}$
+\end_inset
+
+which will detect 
+\begin_inset Formula $m=2n$
+\end_inset
+
+ and 
+\begin_inset Formula $m=3n$
+\end_inset
+
+,
+ respectively.
+ 
+\begin_inset Formula $q!$
+\end_inset
+
+ serves to append the 
+\begin_inset Formula $a$
+\end_inset
+
+'s in between,
+ i.e 
+\begin_inset Formula $I=\{n+1,n+2,\dots,2n-1,2n+1,,\dots3n-1\}$
+\end_inset
+
+.
+ It does this by only removing 
+\begin_inset Formula $a$
+\end_inset
+
+'s from the stack if it has been through 
+\begin_inset Formula $2n$
+\end_inset
+
+ or 
+\begin_inset Formula $3n$
+\end_inset
+
+ characters and then uses the set 
+\begin_inset Formula $I$
+\end_inset
+
+ to fill in if the number of 
+\begin_inset Formula $b's$
+\end_inset
+
+ is a case in-between.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename q4.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

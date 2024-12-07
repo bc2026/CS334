@@ -1,0 +1,612 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children no
+\language american
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+(1) A language is a CFL if a PDA can be constructed.
+ The PDA for the language is the union of PDAs,
+ which must be a CFL,
+ for 
+\begin_inset Formula $p=q,q<r$
+\end_inset
+
+,
+ or both.
+ We first start by reading a string of x's and putting it on the stack.
+ We do the same with y's elimnating x's to ensure equivalence.
+ When we reach the end of the stack,
+ we'll write however many z's.
+ This is the case where 
+\begin_inset Formula $p=q$
+\end_inset
+
+.
+ For 
+\begin_inset Formula $q<r$
+\end_inset
+
+,
+ We can go through x and y regularly but then when we are done writing z's to the stack,
+ only accept when we read a y after writing a string of z's.
+ This ensures the number of y's is less than the number of z's.
+ See figures below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename q1.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename q1b.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+note:
+ 
+\begin_inset Formula $q_{0}$
+\end_inset
+
+is the initial state for the second PDA.s
+\end_layout
+
+\begin_layout Standard
+(2) A wants to cover two conditions.
+ One where p is greater than q and q is greater than or equal to zero.
+ The CFG equivalent of this would be appending a 
+\begin_inset Formula $x$
+\end_inset
+
+ every time and y is seen.
+ In the CFG we'd have to terminate a string of character in the language.
+ That is,
+ when we need to terminate the variable that generates the languages conditions for x and y as well as a way to generate a string of 
+\begin_inset Formula $z's.$
+\end_inset
+
+ The CFG for A can be seen below:
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S\rightarrow XZ
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\rightarrow xXy|xX|x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Z\rightarrow zZ|\epsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To handle cases for 
+\begin_inset Formula $q>r\geq0$
+\end_inset
+
+,
+ let's use a production with the variable Y and use a different X variable to generate the x's.
+ The CFG B:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+S\rightarrow XY
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+X\rightarrow xX|\epsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+Y\rightarrow yYz|yY|y
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The intersection of A and B would be the combination of the conditions for 
+\begin_inset Formula $p,q,r$
+\end_inset
+
+:
+ 
+\begin_inset Formula $p>q>r\geq0\therefore L=\{x^{p}y^{q}z^{r}|p>q>r\geq0\}$
+\end_inset
+
+.
+ Let us use the pumping lemma to show that this intersection is irregular:
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $p\ge1,w=x^{p+2}y^{p+1}z^{p}$
+\end_inset
+
+ where 
+\begin_inset Formula $|w|\ge p$
+\end_inset
+
+ and could abstracted to 
+\begin_inset Formula $w=uvxyz,|vy|>0,|vxy|\leq p$
+\end_inset
+
+.
+ This last condition ensures only two distinct characters to be adjacent.
+ Since v or y must be non-empty,
+ let's consider the case where 
+\begin_inset Formula $vxy$
+\end_inset
+
+ is adjacent to just one symbol 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Trying to pump the word,
+ we can see:
+ 
+\begin_inset Formula $\tilde{w}=uv^{0}xy^{0}z$
+\end_inset
+
+.
+ However,
+ this string results in 
+\begin_inset Formula $|x^{p+2}|\le|y^{p+1}|\Rightarrow p+2\leq p+1=2\leq1$
+\end_inset
+
+ which is false.
+ If vxy is adjacent to two symbols.
+ We'd get a 
+\begin_inset Formula $\tilde{w}$
+\end_inset
+
+ resulting in the omission of some of 
+\begin_inset Formula $x's$
+\end_inset
+
+ and 
+\begin_inset Formula $y's$
+\end_inset
+
+ which violates 
+\begin_inset Formula $|vy|>0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+(b) The union of A and B would generate the appropriate language 
+\begin_inset Formula $\bar{X}=\{x^{p}y^{q}z^{r}|p\le q\le r\}$
+\end_inset
+
+ The pumping lemma can be used to establish its regularity:
+ Let 
+\begin_inset Formula $p\ge1,w=x^{p+2}y^{p+1}z^{p}$
+\end_inset
+
+ where 
+\begin_inset Formula $|w|\ge p$
+\end_inset
+
+ and could abstracted to 
+\begin_inset Formula $w=uvxyz,|vy|>0,|vxy|\leq p$
+\end_inset
+
+.
+ This last condition ensures only two distinct characters.
+ Similar to part (a),
+ pumping the string when vxy are neighbors to only one symbol we'll see for the string 
+\begin_inset Formula $\tilde{w}=uv^{0}xy^{0}z$
+\end_inset
+
+ that the number of y characters decreases by atleast 1.
+ In the other case of two adjacent symbols,
+ we'll see a decrease in y and z characters which violates the languages condition of 
+\begin_inset Formula $q\le r$
+\end_inset
+
+.
+ This means that 
+\begin_inset Formula $\bar{X}$
+\end_inset
+
+ cannot be a CFL as it contradicts the pumping lemma.
+ 
+\end_layout
+
+\begin_layout Standard
+(3) 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L=\{a^{m}b^{n}|m=n^{2},m,n\ge1\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $L=\{a^{n^{2}}b^{n}|n\ge1\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $p\ge1$
+\end_inset
+
+ where 
+\begin_inset Formula $|w|\ge p$
+\end_inset
+
+ and could abstracted to 
+\begin_inset Formula $w=uvxyz,|vy|>0,|vxy|\leq p$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assume 
+\begin_inset Formula $L$
+\end_inset
+
+ is context free:
+\end_layout
+
+\begin_layout Standard
+Consider we have:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\tilde{w}=uv^{0}xy^{0}z$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Case 1:
+ vxy is adjacent to one symbol,
+ consider an 
+\begin_inset Formula $a$
+\end_inset
+
+ character.
+ Pumping 
+\begin_inset Formula $\tilde{w}$
+\end_inset
+
+ we'd remove at least one 
+\begin_inset Formula $a$
+\end_inset
+
+ characters which result in the language be modified to 
+\begin_inset Formula $L=\{a^{m-k}b^{n}|k>0\}$
+\end_inset
+
+.
+ However 
+\begin_inset Formula $m=n^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $n^{2}-k\neq n$
+\end_inset
+
+ for any 
+\begin_inset Formula $k>0$
+\end_inset
+
+.
+ Therefore modifying how many 
+\begin_inset Formula $a$
+\end_inset
+
+'s there are without changing the 
+\begin_inset Formula $b's$
+\end_inset
+
+ would ensure 
+\begin_inset Formula $\tilde{w}\not\in L$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Case 2:
+ vxy is adjacent to two symbols,
+ consider an 
+\begin_inset Formula $a,b$
+\end_inset
+
+ characters.
+ In the 
+\begin_inset Formula $uv^{i}xy^{i}z$
+\end_inset
+
+ composition,
+ if we apply i=0,
+ this means 
+\begin_inset Formula $a,b$
+\end_inset
+
+ are removed in a way that preserves 
+\begin_inset Formula $m=n^{2}.$
+\end_inset
+
+ This is not possible since the only way to preserve that relationship would be decreasing 
+\begin_inset Formula $a$
+\end_inset
+
+'s more than 
+\begin_inset Formula $p$
+\end_inset
+
+ however 
+\begin_inset Formula $|vxy|$
+\end_inset
+
+ is strictly less than 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Consider this when n=2:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $uv^{0}xy^{0}z\rightarrow uxz\rightarrow aab$
+\end_inset
+
+ or 
+\series bold
+
+\begin_inset Formula $a^{2}b$
+\end_inset
+
+
+\series default
+.
+ Here,
+ 
+\begin_inset Formula $m=2$
+\end_inset
+
+ and 
+\begin_inset Formula $n=1$
+\end_inset
+
+.
+ However this contradicts the 
+\begin_inset Formula $L's$
+\end_inset
+
+ constraint 
+\begin_inset Formula $m=n^{2}$
+\end_inset
+
+since 
+\begin_inset Formula $2\neq1^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Considering in both cases
+\begin_inset Formula $\tilde{w}\not\in L\therefore L$
+\end_inset
+
+ is not regular.
+ 
+\end_layout
+
+\begin_layout Standard
+(4) (a) 
+\begin_inset Formula $q_{0}0011,xq_{1}011,x0q_{1}11,xq_{2}0y1,q_{2}x0y1,xq_{0}0y1,xxq_{1}y1,$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $xxyq_{1}1,xxq_{2}yy,xq_{2}xyy,xxq_{0}yy,xxyq_{3}y,xxyyq_{3},xxyq_{4}y$
+\end_inset
+
+(accept).
+\end_layout
+
+\begin_layout Standard
+(b)
+\begin_inset Formula $q_{0}00011,xq_{1}0011,x0q_{1}011,x00q_{1}11,x0q_{2}0y1,xq_{2}00y1,q_{2}x00y1,$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $xq_{0}00y1,xxq_{1}0y1,xx0q_{1}y1,xx0yq_{1}1,$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $xx0q_{2}yy,xxq_{2}0yy,xq_{2}x0yy,xxq_{0}0yy,xxxq_{1}yy,xxxyq_{1}y,xxxyyq_{1}$
+\end_inset
+
+(accept).
+\end_layout
+
+\begin_layout Standard
+(5) TM starts at the initial state and looks for a 0 replacing it with an x if it is unable to find one.
+ This repeats if there are multiple zeroes on tape.
+ If it finds a 1 moving left replacing it with a y.
+ If 0 or y is read switch to head to right.
+ If looking for an x,
+ the head moves right moving to the left only if 0 or y is read.
+ When we run out of 0's and 1's,
+ keep head to right until a blank is found.
+ If an empty character is read,
+ accept.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename q5.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

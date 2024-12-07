@@ -1,0 +1,188 @@
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children no
+\language american
+\language_package default
+\inputencoding utf8
+\fontencoding auto
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement class
+\float_alignment class
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_formatted_ref 0
+\use_minted 0
+\use_lineno 0
+\index Index
+\shortcut idx
+\color #008080
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tablestyle default
+\tracking_changes false
+\output_changes false
+\change_bars false
+\postpone_fragile_content true
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+(2)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename q2.png
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let 
+\begin_inset Formula $\_$
+\end_inset
+
+ be the empty character.
+ 
+\end_layout
+
+\begin_layout Standard
+For some DFA 
+\begin_inset Formula $D$
+\end_inset
+
+,
+ we have 
+\begin_inset Formula $D=(Q,\Sigma,\delta,q_{0},F).$
+\end_inset
+
+ For an equivalent TM 
+\begin_inset Formula $D'$
+\end_inset
+
+,
+ we can define it as the following:
+ 
+\begin_inset Formula $D'=(Q',\Sigma,\Gamma,\delta',q_{0},q_{accept},q_{reject})$
+\end_inset
+
+ where 
+\begin_inset Formula $Q'=Q\cup\{q_{accept},q_{reject}\}$
+\end_inset
+
+ is some new set of states and 
+\begin_inset Formula $\Gamma=\Sigma\cup\_,\_\not\in\Sigma$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\delta$
+\end_inset
+
+ is changed to 
+\begin_inset Formula $\delta'$
+\end_inset
+
+ because we must specify the direction the tape is moving instead of just what character to transition on.
+ In the case of the DFA,
+ we always travel right and so we'll just have the regular transitions but must indicate that we are travel right on the tape with 
+\begin_inset Formula $R.$
+\end_inset
+
+ An equivalent TM for some DFA 
+\begin_inset Formula $D$
+\end_inset
+
+ would be one that always moves to the right and when it comes across an empty character on the TM's tape,
+ we either accept or reject the some string 
+\begin_inset Formula $w.$
+\end_inset
+
+ When converting DFA to a TM,
+ we know that if the TM reads an empty character moving right that it has reached the end of 
+\begin_inset Formula $w$
+\end_inset
+
+.
+ So,
+ when this occurs in accepting states we must point to our accepting state in 
+\begin_inset Formula $D'$
+\end_inset
+
+ called 
+\begin_inset Formula $q_{accept}$
+\end_inset
+
+.
+ Similarly for rejecting states we point to our rejecting state 
+\begin_inset Formula $q_{reject}.$
+\end_inset
+
+ 
+\end_layout
+
+\end_body
+\end_document
