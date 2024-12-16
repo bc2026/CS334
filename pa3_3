@@ -1,0 +1,148 @@
+import ast
+
+class TM:
+    def __init__(self, sigma, gamma, delta, Q):
+        self.sigma = sigma
+        self.gamma = gamma
+        self.delta = delta
+        self.Q = Q
+        self.q0 = min(Q)  # Initial state
+        self.q_accept = max(Q)  # Halting state
+    
+    @staticmethod
+    def read_input():
+        sigma = ast.literal_eval(input())  # Input alphabet
+        gamma = ast.literal_eval(input())  # Tape alphabet
+        delta = ast.literal_eval(input())  # Transition function
+        input_string = input()  # Input string  
+        input_string = eval(input_string)
+        
+        return sigma, gamma, delta, list(delta.keys()), input_string
+    
+    def process_input(self, input_str: str) -> list:
+        tape = list(input_str) + ["_"] * 20  # Initialize tape with extra blanks
+        tape_head = 0
+        curr_state = self.q0
+        
+        while curr_state in self.delta and self.delta[curr_state]:  # Continue until no transitions
+            if tape_head < 0:  # Extend tape on the left
+                tape.insert(0, "_")
+                tape_head = 0
+            elif tape_head >= len(tape):  # Extend tape on the right
+                tape.append("_")
+            
+            current_symbol = tape[tape_head]
+            curr_state_dict = self.delta.get(curr_state, {})
+            
+            try:
+                trans_list = curr_state_dict[current_symbol]
+                tape[tape_head] = trans_list[0]  # Write new symbol
+                
+                     # Move tape head
+                if trans_list[1] == 'R':
+                    tape_head += 1
+                elif trans_list[1] == 'L':
+                    tape_head -= 1
+
+                # Transition to next state
+                curr_state = trans_list[2]
+            except KeyError:
+                break
+                
+        
+        return tape[:20], curr_state==self.q_accept  # Return only the first 20 cells of the tape
+    
+    def configs(self, input_string):
+        import ast
+
+class TM:
+    def __init__(self, sigma, gamma, delta, Q):
+        self.sigma = sigma
+        self.gamma = gamma
+        self.delta = delta
+        self.Q = Q
+        self.q0 = min(Q)  # Initial state
+        self.q_accept = max(Q)  # Halting state
+    
+    @staticmethod
+    def read_input():
+        sigma = ast.literal_eval(input())  # Input alphabet
+        gamma = ast.literal_eval(input())  # Tape alphabet
+        delta = ast.literal_eval(input())  # Transition function
+        input_string = input()  # Input string  
+        input_string = eval(input_string)
+        
+        return sigma, gamma, delta, list(delta.keys()), input_string
+    
+    def process_input(self, input_str: str) -> list:
+        tape = list(input_str) + ["_"] * 20  # Initialize tape with extra blanks
+        tape_head = 0
+        curr_state = self.q0
+        
+        while curr_state in self.delta and self.delta[curr_state]:  # Continue until no transitions
+            if tape_head < 0:  # Extend tape on the left
+                tape.insert(0, "_")
+                tape_head = 0
+            elif tape_head >= len(tape):  # Extend tape on the right
+                tape.append("_")
+            
+            current_symbol = tape[tape_head]
+            curr_state_dict = self.delta.get(curr_state, {})
+            
+            try:
+                trans_list = curr_state_dict[current_symbol]
+                tape[tape_head] = trans_list[0]  # Write new symbol
+                
+                     # Move tape head
+                if trans_list[1] == 'R':
+                    tape_head += 1
+                elif trans_list[1] == 'L':
+                    tape_head -= 1
+
+                # Transition to next state
+                curr_state = trans_list[2]
+            except KeyError:
+                break
+                
+        
+        return tape[:20], curr_state==self.q_accept  # Return only the first 20 cells of the tape
+    
+    def configs(self, input_string):
+        tape = input_string
+        tape = list(input_string) + ["_"] * 20  # Add padding for blank spaces
+        tape_head = 0  # Start tape head at the first position
+        current_state = 0  # Initial state
+        configs = []  # To store intermediate configs for debugging
+        
+        while current_state != self.q_accept:
+            config = f"[{current_state}] " + ("  ".join(tape[tape_head:])) if tape_head == 0 else " " + ("  ".join(tape[:tape_head])) + f" [{current_state}] " + ("  ".join(tape[tape_head:])) 
+            
+            configs.append(config)
+            current_symbol = tape[tape_head]
+            if current_symbol not in delta.get(current_state, {}): break
+            
+            tape[tape_head] = self.delta[current_state][current_symbol][0]
+            LR = self.delta[current_state][current_symbol][1]
+            next_state = self.delta[current_state][current_symbol][2]
+            
+            move = lambda x: tape_head + 1 if x == 'R' else tape_head - 1
+            tape_head = move(LR)
+            
+            current_state = next_state
+        
+        if len(configs) > 1:
+            if tape_head != 0:
+                last  = " " + ("  ".join(tape[:tape_head])) + f" [{current_state}] " + ("  ".join(tape[tape_head:]))
+            else:
+                last  = f"[{current_state}] " + ("  ".join(tape[tape_head:]))
+            if current_state == self.q_accept:
+                configs.append(last)
+        for config in configs: print(config[:62])
+
+if __name__ == "__main__":
+    sigma, gamma, delta, Q, input_string = TM.read_input()
+    tm = TM(sigma, gamma, delta, Q)
+    
+    tm.configs(input_string)
+    # tape_list = tm.process_input(input_string)
+    # print(f'{tape_list[0]}\n{tape_list[1]}')
