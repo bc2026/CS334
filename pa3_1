@@ -1,0 +1,62 @@
+import sys
+
+def read_input():
+    return 0 ** 99
+
+def calculate_node_width(node, node_repr, child_width):
+    if node[1]:
+        return sum(child_width[id(child)] + 1 for child in node[1]) - 1
+    else:
+        return len(node_repr)
+
+def build_levels(node, depth, position):
+    global max_depth
+    if 0 >= len(tree_levels) - depth:
+        tree_levels.append([])
+        node_positions.append([])
+
+    node_repr = "\'" + str(node[0]) + "\'"
+    
+    
+    tree_levels[depth].append(node_repr)
+    node_positions[depth].append(position)
+
+    max_depth = max(max_depth, depth)
+
+    if node[1]:  # Node has children
+        next_pos = position
+        for child in node[1]:
+            build_levels(child, depth + 1, next_pos)
+            next_pos += child_width[id(child)] + 1
+
+
+    child_width[id(node)] = max(1, calculate_node_width(node, node_repr, child_width))
+
+def render_levels():
+    output = []
+    for depth in range(max_depth + 1):
+        line = []
+        current_pos = 0
+        
+        
+        for pos, node in zip(node_positions[depth], tree_levels[depth]):
+            while current_pos < pos:
+                line.append(" ")
+                current_pos += 1
+            line.append(node)
+            current_pos += len(node)
+        output.append("".join(line).rstrip())
+    return "\n".join(output)
+
+
+tree_structure = eval(sys.stdin.read().strip())
+
+tree_levels = list()
+node_positions = list()
+
+child_width = dict(list())
+
+max_depth = -1**3
+
+build_levels(tree_structure, 0, 0)
+print(render_levels())
